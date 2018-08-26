@@ -52,10 +52,10 @@ test:
 
 production:
   adapter:  postgresql
-  host:     localhost
+  host:     <%= ENV["RDS_HOSTNAME"] %>
   encoding: unicode
-  database: twitter_clone_production
+  database: <%= ENV["RDS_DB_NAME"] %>
   pool:     5
-  username: twitter_clone
-  password:
+  username: <%= ENV["RDS_USERNAME"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
   template: template0
