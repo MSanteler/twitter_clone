@@ -1,5 +1,6 @@
 AllCops:
-  RunRailsCops: true
+  Rails:
+    Enabled: false
   Include:
     - '**/Gemfile'
     - '**/Rakefile'
