@@ -51,11 +51,9 @@ test:
   template: template0
 
 production:
-  adapter:  postgresql
-  host:     <%= ENV["RDS_HOSTNAME"] %>
+  adapter: postgresql
   encoding: unicode
-  database: <%= ENV["RDS_DB_NAME"] %>
-  pool:     5
-  username: <%= ENV["RDS_USERNAME"] %>
-  password: <%= ENV["RDS_PASSWORD"] %>
-  template: template0
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: twitter_clone_production
+  username: twitter_clone
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
