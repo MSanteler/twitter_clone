@@ -1,26 +1,38 @@
 <% if user_signed_in? %>
-<li class="nav-item active">
-  <a class="nav-link" href="#">
-    <span class="fa fa-home"></span>
-    Home
-    <span class="sr-only">(current)</span></a>
-</li>
-<li class="nav-item">
-  <a class="nav-link disabled" href="#">
-    <span class="fa fa-bolt"></span>
-    Moments
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link disabled" href="#">
-    <span class="fa fa-bell-o"></span>
-    Notifications
-  </a>
-</li>
-<li class="nav-item">
-  <a class="nav-link disabled" href="#">
-    <span class="fa fa-envelope-o"></span>
-    Messages
-  </a>
-</li>
+<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <li class="nav-item active">
+    <a class="nav-link" href="<%= root_url %>">
+      <span class="fa fa-home"></span>
+      Home
+      <span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">
+      <span class="fa fa-bolt"></span>
+      Moments
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">
+      <span class="fa fa-bell-o"></span>
+      Notifications
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#">
+      <span class="fa fa-envelope-o"></span>
+      Messages
+    </a>
+  </li>
+  <%= render 'layouts/nav_links_for_auth' %>
+</ul>
+<form class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" disabled type="submit">Search</button>
+</form>
+<ul class="navbar-nav ml-2">
+  <li class="nav-item">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tweetModal">Tweet</button>
+  </li>
+</ul>
 <% end %>
