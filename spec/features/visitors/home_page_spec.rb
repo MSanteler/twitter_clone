@@ -37,6 +37,15 @@ feature 'Home page' do
       expect(page).to have_content "Some Tweet"
     end
 
+    context "when user has follows with tweets" do
+      before do
+        @followed_user = FactoryBot.create(:user)
+        @tweet = FactoryBot.create(:tweet, user: @followed_user)
+      end
+      pending "users sees tweets of his followed users" do
+        expect(page).to have_content @tweet.content
+      end
+    end
   end
 
 
