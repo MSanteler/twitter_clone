@@ -10,4 +10,6 @@ class User < ApplicationRecord
                                   class_name: "Follow",
                                   dependent: :destroy
   has_many :followers, through: :reverse_followings, source: :user
+
+  has_many :tweets
 end
