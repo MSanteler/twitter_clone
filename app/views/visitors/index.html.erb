@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <div class="container">
     <div class="row">
-      <div class="col-3-sm">
+      <div class="col-1-sm">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Profile Card</h5>
@@ -12,20 +12,12 @@
           </div>
         </div>
       </div>
-      <div class="col-9-sm">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Some Tweet</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-        </div>
+      <div class="col col-11-sm">
+        <%= render @tweets %>
       </div>
     </div>
   </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="tweetModal" tabindex="-1" role="dialog" aria-labelledby="tweetModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
