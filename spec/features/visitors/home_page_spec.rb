@@ -26,7 +26,7 @@ feature 'Home page' do
     #   Given I am signed in
     #   Then I should see my profile card
     scenario 'user sees profile card' do
-      expect(page).to have_content "Profile Card"
+      expect(page).to have_content @user.name
       expect(page).to have_content @user.email
     end
 
