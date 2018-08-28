@@ -12,4 +12,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_followings, source: :user
 
   has_many :tweets
+
+  def followed_tweets
+    Tweet.where(user: self.followings)
+  end
 end

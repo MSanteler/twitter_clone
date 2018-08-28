@@ -48,7 +48,7 @@ feature 'Home page' do
         @tweet = FactoryBot.create(:tweet, user: @unfollowed_user)
         visit root_path
       end
-      pending "users does not see tweet of an unfollowed users" do
+      scenario "users does not see tweet of an unfollowed users" do
         expect(page).not_to have_content @tweet.content
       end
     end
