@@ -16,25 +16,28 @@ feature 'Home page' do
     expect(page).to have_content 'Sign in'
   end
 
-  # Scenario: Visit the home page
-  #   Given I am signed in
-  #   Then I should see my profile card
-  scenario 'user sees profile card' do
-    user = FactoryBot.create(:user)
-    login_as(user, :scope => :user)
-    visit root_path
-    expect(page).to have_content "Profile Card"
-    expect(page).to have_content user.email
+  context "when logged in" do
+    before do
+      @user = FactoryBot.create(:user)
+      login_as(@user, :scope => :user)
+      visit root_path
+    end
+    # Scenario: Visit the home page
+    #   Given I am signed in
+    #   Then I should see my profile card
+    scenario 'user sees profile card' do
+      expect(page).to have_content "Profile Card"
+      expect(page).to have_content @user.email
+    end
+
+    # Scenario: Visit the home page
+    #   Given I am signed in
+    #   Then I should see some tweets
+    scenario 'user sees profile card' do
+      expect(page).to have_content "Some Tweet"
+    end
+
   end
 
-  # Scenario: Visit the home page
-  #   Given I am signed in
-  #   Then I should see some tweets
-  scenario 'user sees profile card' do
-    user = FactoryBot.create(:user)
-    login_as(user, :scope => :user)
-    visit root_path
-    expect(page).to have_content "Some Tweet"
-  end
 
 end
