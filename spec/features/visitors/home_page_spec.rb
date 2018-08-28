@@ -30,19 +30,13 @@ feature 'Home page' do
       expect(page).to have_content @user.email
     end
 
-    # Scenario: Visit the home page
-    #   Given I am signed in
-    #   Then I should see some tweets
-    scenario 'user sees profile card' do
-      expect(page).to have_content "Some Tweet"
-    end
-
     context "when user has follows with tweets" do
       before do
         @followed_user = FactoryBot.create(:user)
         @tweet = FactoryBot.create(:tweet, user: @followed_user)
+        visit root_path
       end
-      pending "users sees tweets of his followed users" do
+      scenario "users sees tweets of his followed users" do
         expect(page).to have_content @tweet.content
       end
     end
