@@ -4,11 +4,26 @@
       <div class="col-1-sm">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Profile Card</h5>
+            <h5 class="card-title"><%= current_user.name %></h5>
             <h6 class="card-subtitle mb-2 text-muted"><%= current_user.email %></h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <div class="row">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Tweets</th>
+                    <th scope="col">Following</th>
+                    <th scope="col">Followers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= current_user.tweets.count %></td>
+                    <td><%= current_user.followings.count %></td>
+                    <td><%= current_user.followers.count %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
