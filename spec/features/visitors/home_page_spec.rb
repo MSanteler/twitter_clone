@@ -30,10 +30,11 @@ feature 'Home page' do
       expect(page).to have_content @user.email
     end
 
-    context "when user has follows with tweets" do
+    context "when user has followings with tweets" do
       before do
         @followed_user = FactoryBot.create(:user)
         @tweet = FactoryBot.create(:tweet, user: @followed_user)
+        Follow.create(user: @user, followed: @followed_user)
         visit root_path
       end
       scenario "users sees tweets of his followed users" do
