@@ -12,4 +12,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow
+    Follow.create(user: current_user, followed: User.find(params[:id]))
+    redirect_to users_path
+  end
+
+  def unfollow
+    Follow.where(user: current_user, followed: User.find(params[:id])).destroy_all
+    redirect_to users_path
+  end
+
 end
