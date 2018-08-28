@@ -1,3 +1,6 @@
+include Warden::Test::Helpers
+Warden.test_mode!
+
 # Feature: Home page
 #   As a visitor
 #   I want to visit a home page

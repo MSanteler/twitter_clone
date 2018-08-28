@@ -1,3 +1,6 @@
+include Warden::Test::Helpers
+Warden.test_mode!
+
 # Feature: Navigation links
 #   As a visitor
 #   I want to see navigation links
