@@ -27,13 +27,25 @@ feature 'User profile page', :devise do
   #   Given I am signed in
   #   When I visit another user's profile
   #   Then I see an 'access denied' message
-  scenario "user cannot see another user's profile" do
-    me = FactoryBot.create(:user)
-    other = FactoryBot.create(:user, email: 'other@example.com')
-    login_as(me, :scope => :user)
-    Capybara.current_session.driver.header 'Referer', root_path
-    visit user_path(other)
-    expect(page).to have_content 'Access denied.'
+  context "When logged in and I visit anothers page" do
+    let(:me) {FactoryBot.create(:user)}
+    let(:user) {FactoryBot.create(:user, email: 'user@example.com')}
+    let(:user2) {FactoryBot.create(:user, email: 'user2@example.com')}
+    before do
+      login_as(me, :scope => :user)
+      Capybara.current_session.driver.header 'Referer', root_path
+      @tweet = FactoryBot.create(:tweet, user: user)
+    end
+    scenario "I sees the others tweets" do
+      visit user_path(user)
+      expect(page).to have_content @tweet.content
+    end
+    scenario "I shouldn't see other's follower's tweets" do
+      @user2_tweet = FactoryBot.create(:tweet, user: user2)
+      user.follow(user2)
+      visit user_path(user)
+      expect(page).not_to have_content @user2_tweet.content
+    end
   end
 
 end
