@@ -45,6 +45,12 @@ feature 'User index page', :devise do
         visit unfollow_user_path(@another_user)
         expect(@user.followings).not_to include(@another_user)
       end
+
+      scenario 'user unfollows another user' do
+        visit follow_user_path(@user)
+        expect(@user.followings).not_to include(@user)
+        expect(page).to have_content("Error: You cannot follow yourself")
+      end
     end
 
   end

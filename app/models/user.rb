@@ -13,7 +13,17 @@ class User < ApplicationRecord
 
   has_many :tweets
 
-  def followed_tweets
-    Tweet.where(user: self.followings)
+  def tweet_timeline
+    Tweet.where(user: self.followings + [self]).order("created_at desc")
+  end
+
+  def follow(user)
+    return false if user == self
+    follows.create(followed: user)
+  end
+
+  def unfollow(user)
+    return false if user == self
+    follows.where(followed: user).destroy_all
   end
 end

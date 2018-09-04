@@ -6,20 +6,29 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to root_path, :alert => "Access denied."
-    end
+    # sets @user for use in the view
+    user_from_params
   end
 
   def follow
-    Follow.create(user: current_user, followed: User.find(params[:id]))
-    redirect_to users_path
+    if current_user.follow(user_from_params)
+      redirect_to users_path, :notice => "Followed #{user_from_params.name}"
+    else
+      redirect_to users_path, :alert => "Error: You cannot follow yourself"
+    end
   end
 
   def unfollow
-    Follow.where(user: current_user, followed: User.find(params[:id])).destroy_all
-    redirect_to users_path
+    if current_user.unfollow(user_from_params)
+      redirect_to users_path, :notice => "Unfollowed #{user_from_params.name}"
+    else
+      redirect_to users_path, :alert => "Something went wrong"
+    end
   end
 
+  private
+
+  def user_from_params
+    @user ||= User.find(params[:id])
+  end
 end
