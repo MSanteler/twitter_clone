@@ -40,6 +40,11 @@ feature 'Home page' do
       scenario "users sees tweets of his followed users" do
         expect(page).to have_content @tweet.content
       end
+      scenario "clicking link of my followers tweet should take me to their page" do
+        expect(page).to have_link(@followed_user.name)
+        click_link(@followed_user.name)
+        expect(page).to have_current_path(user_path(@followed_user))
+      end
     end
 
     context "when user is not following the tweeter" do
