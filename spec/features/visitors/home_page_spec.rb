@@ -57,6 +57,15 @@ feature 'Home page' do
         expect(page).not_to have_content @tweet.content
       end
     end
+
+    context "when user searches" do
+      scenario "he sees results" do
+        fill_in "search", with: "Bob"
+        click_button("Search")
+        expect(page).to have_current_path(users_path)
+        expect(page).to have_content("Results")
+      end
+    end
   end
 
 

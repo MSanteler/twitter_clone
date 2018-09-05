@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
-    <h3>Users</h3>
+    <% if @query_text%>
+      <h3>Search Results</h3>
+    <% else %>
+      <h3>Users</h3>
+    <% end %>
     <div class="column">
       <table class="table">
         <tbody>
